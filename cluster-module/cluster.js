@@ -2,6 +2,9 @@ const cluster = require("node:cluster");
 const http = require("node:http");
 const OS = require("node:os");
 
+// run with pm2 start no-cluster.js -i 0 // to figure the optimum number of workers to create
+// pm2 stop no-cluster.js
+
 //NOT working on Windows!!!
 // console.log(OS.cpus().length);
 // process.env.NODE_CLUSTER_SCHED_POLICY = cluster.SCHED_RR;
