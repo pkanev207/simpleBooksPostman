@@ -1,18 +1,22 @@
 const cluster = require("node:cluster");
+//import * as cluster from 'cluster'
+// const cluster = await import("cluster");
 const http = require("node:http");
 const OS = require("node:os");
 
 // run with pm2 start no-cluster.js -i 0 // to figure the optimum number of workers to create
 // pm2 stop no-cluster.js
 
-//NOT working on Windows!!!
+//NOT implemented to work on Windows, but still...
+cluster.schedulingPolicy = cluster.SCHED_RR;
+// cluster.schedulingPolicy = 2;
+// cluster.SCHED_RR = 2;
+console.log("Checking the Cluster: ", cluster.schedulingPolicy);
+console.log("Checking the Cluster again: ", cluster.SCHED_RR);
 // console.log(OS.cpus().length);
 // process.env.NODE_CLUSTER_SCHED_POLICY = cluster.SCHED_RR;
 // process.env.NODE_CLUSTER_SCHED_POLICY = 2;
 // console.log(`process.env.NODE_CLUSTER_SCHED_POLICY: ${process.env.NODE_CLUSTER_SCHED_POLICY}`);
-
-//import * as cluster from 'cluster'
-// const cluster = await import("cluster");
 
 // cluster.isPrimary
 if (cluster.isMaster) {
